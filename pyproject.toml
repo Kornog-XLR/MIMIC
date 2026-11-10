@@ -7,11 +7,25 @@ authors = [
     { name = "Kornog-XLR", email = "nicolas.stephan2024@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
-
-[project.scripts]
-mimic = "mimic:main"
+dependencies = [
+    "accelerate>=1.15.0",
+    "matplotlib>=3.11.2",
+    "medspacy>=1.3.1",
+    "pandas>=3.0.6",
+    "pingouin>=0.7.0",
+    "pyarrow>=26.0.0",
+    "pytest>=9.1.1",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.1",
+    "streamlit>=1.59.1",
+    "torch>=2.14.1",
+    "tqdm>=4.70.1",
+    "transformers>=5.19.0",
+]
 
 [build-system]
-requires = ["uv_build>=0.12.14,<0.13.0"]
-build-backend = "uv_build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

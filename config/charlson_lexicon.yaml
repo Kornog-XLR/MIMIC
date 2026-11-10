@@ -1,0 +1,320 @@
+# Charlson comorbidity lexicon for rule-based extraction from PMH text.
+# Each category contains a list of terms (case-insensitive literal match).
+# Terms prefixed with "regex:" are compiled as regex patterns.
+# Modifier categories (prefixed with _) are used for severity co-occurrence rules.
+
+mi:
+  - myocardial infarction
+  - heart attack
+  - STEMI
+  - NSTEMI
+  - non-ST elevation myocardial infarction
+  - ST elevation myocardial infarction
+  - transmural infarction
+  - subendocardial infarction
+  - "regex:\\bMI\\b"
+  - "regex:\\bAMI\\b"
+  # Debatable: acute coronary syndrome includes unstable angina (not MI)
+  # - acute coronary syndrome
+
+chf:
+  - congestive heart failure
+  - heart failure
+  - systolic heart failure
+  - diastolic heart failure
+  - systolic dysfunction
+  - cardiomyopathy
+  - dilated cardiomyopathy
+  - ischemic cardiomyopathy
+  - nonischemic cardiomyopathy
+  - hypertrophic cardiomyopathy
+  - reduced ejection fraction
+  - "regex:\\bCHF\\b"
+  - "regex:\\bHF\\b"
+  - "regex:\\bHFrEF\\b"
+  - "regex:\\bHFpEF\\b"
+  - "regex:\\bHFmrEF\\b"
+  - "regex:EF\\s*\\d{1,2}\\s*%"     # "EF 30%", "EF30%"
+  - "regex:\\bDCM\\b"               # dilated cardiomyopathy
+  # Debatable: "diastolic dysfunction" without explicit HF diagnosis
+  # - diastolic dysfunction
+
+pvd:
+  - peripheral vascular disease
+  - peripheral arterial disease
+  - claudication
+  - intermittent claudication
+  - aortic aneurysm
+  - abdominal aortic aneurysm
+  - aortoiliac disease
+  - femoral popliteal bypass
+  - fem-pop bypass
+  - aortobifemoral bypass
+  - carotid artery disease
+  - "regex:\\bPVD\\b"
+  - "regex:\\bPAD\\b"
+  - "regex:\\bAAA\\b"
+  - "regex:\\bAOMI\\b"
+
+cevd:
+  - cerebrovascular accident
+  - cerebrovascular disease
+  - stroke
+  - transient ischemic attack
+  - carotid endarterectomy
+  - intracranial hemorrhage
+  - subarachnoid hemorrhage
+  - "regex:\\bCVA\\b"
+  - "regex:\\bTIA\\b"
+  # Debatable: carotid stenosis without stroke/TIA
+  # - carotid stenosis
+
+dementia:
+  - dementia
+  - Alzheimer
+  - Alzheimer's disease
+  - vascular dementia
+  - Lewy body dementia
+  - frontotemporal dementia
+  - cognitive decline
+  - major neurocognitive disorder
+  # Debatable: MCI is not dementia per Charlson
+  # - mild cognitive impairment
+  # - MCI
+
+cpd:
+  - chronic obstructive pulmonary disease
+  - emphysema
+  - chronic bronchitis
+  - asthma
+  - interstitial lung disease
+  - pulmonary fibrosis
+  - idiopathic pulmonary fibrosis
+  - bronchiectasis
+  - sarcoidosis
+  - home oxygen
+  - home O2
+  - oxygen dependent
+  - "regex:\\bCOPD\\b"
+  - "regex:\\bILD\\b"
+  - "regex:\\bIPF\\b"
+
+rheumd:
+  - rheumatoid arthritis
+  - systemic lupus erythematosus
+  - lupus
+  - scleroderma
+  - systemic sclerosis
+  - polymyositis
+  - dermatomyositis
+  - mixed connective tissue disease
+  - polymyalgia rheumatica
+  - vasculitis
+  - polyarteritis nodosa
+  - Sjogren
+  - Sjogren's syndrome
+  - ankylosing spondylitis
+  - "regex:\\bRA\\b"
+  - "regex:\\bSLE\\b"
+  - "regex:\\bMCTD\\b"
+
+pud:
+  - peptic ulcer disease
+  - peptic ulcer
+  - gastric ulcer
+  - duodenal ulcer
+  - GI bleed from ulcer
+  - "regex:\\bPUD\\b"
+
+mld:
+  - hepatitis B
+  - hepatitis C
+  - chronic hepatitis
+  - chronic liver disease
+  - fatty liver
+  - cirrhosis
+  - liver cirrhosis
+  - "regex:\\bHCV\\b"
+  - "regex:\\bHBV\\b"
+  - "regex:\\bNASH\\b"
+  - "regex:\\bNAFLD\\b"
+  # Debatable: NAFLD alone might be too mild
+  # Consider removing NAFLD if it generates false positives
+
+diab:
+  - diabetes mellitus
+  - diabetes
+  - type 1 diabetes
+  - type 2 diabetes
+  - insulin dependent diabetes
+  - non-insulin dependent diabetes
+  - on insulin
+  - on metformin
+  - "regex:\\bDM\\b"
+  - "regex:\\bDM1\\b"
+  - "regex:\\bDM2\\b"
+  - "regex:\\bDMII\\b"
+  - "regex:\\bT1DM\\b"
+  - "regex:\\bT2DM\\b"
+  - "regex:\\bIDDM\\b"
+  - "regex:\\bNIDDM\\b"
+
+diabwc:
+  # Direct compound terms (always diabwc, not diab)
+  - diabetic nephropathy
+  - diabetic retinopathy
+  - diabetic neuropathy
+  - diabetic foot
+  - diabetic foot ulcer
+  - diabetic gastroparesis
+  - diabetic ketoacidosis
+  - diabetic kidney disease
+  - proliferative diabetic retinopathy
+  - nonproliferative diabetic retinopathy
+  - "regex:DM\\s*(type\\s*)?[12I]*\\s*c/b"     # "DM c/b", "DM2 c/b"
+  - "regex:DM\\s*(type\\s*)?[12I]*\\s*complicated\\s+by"
+  - "regex:diabetes\\s+complicated\\s+by"
+
+hp:
+  - hemiplegia
+  - hemiparesis
+  - paraplegia
+  - quadriplegia
+  - tetraplegia
+  - spinal cord injury
+
+rend:
+  - chronic kidney disease
+  - chronic renal failure
+  - chronic renal insufficiency
+  - end stage renal disease
+  - dialysis
+  - hemodialysis
+  - peritoneal dialysis
+  - renal transplant
+  - kidney transplant
+  - "regex:\\bCKD\\b"
+  - "regex:\\bESRD\\b"
+  - "regex:\\bCRF\\b"
+  - "regex:\\bCKD\\s*stage\\s*[345]"
+  - "regex:\\bCKD\\s*[345]\\b"
+  - "regex:\\bCKD\\s*III|IV|V\\b"
+  # REMOVED: \bHD\b — too ambiguous (hospital day, Hodgkin disease, etc.)
+  # REMOVED: \bPD\b — too ambiguous (Parkinson disease, etc.)
+  # Debatable: "CKD" without stage → include by default (most CKD in PMH is >= stage 3)
+
+canc:
+  - cancer
+  - carcinoma
+  - adenocarcinoma
+  - squamous cell carcinoma
+  - lymphoma
+  - leukemia
+  - melanoma
+  - sarcoma
+  - myeloma
+  - multiple myeloma
+  # REMOVED: "malignancy" — too broad, matches "no evidence of malignancy" contexts
+  - malignant neoplasm
+  # REMOVED: "tumor" — too ambiguous (pituitary tumor, benign tumors, etc.)
+  - Hodgkin
+  - non-Hodgkin
+  - breast cancer
+  - lung cancer
+  - colon cancer
+  - prostate cancer
+  - pancreatic cancer
+  - ovarian cancer
+  - renal cell carcinoma
+  - bladder cancer
+  - thyroid cancer
+  - hepatocellular carcinoma
+  - cholangiocarcinoma
+  - glioblastoma
+  - "regex:\\bHCC\\b"
+  - "regex:\\bNSCLC\\b"
+  - "regex:\\bSCLC\\b"
+  - "regex:\\bAML\\b"
+  - "regex:\\bCML\\b"
+  # REMOVED: \bALL\b — too ambiguous (matches the word "all")
+  - acute lymphoblastic leukemia
+  - "regex:\\bCLL\\b"
+  - myelodysplastic syndrome
+  # REMOVED: \bMDS\b — can be ambiguous
+  - "regex:\\bDLBCL\\b"
+  # Debatable: BCC (basal cell carcinoma) — excluded from Charlson
+  # - basal cell carcinoma
+  # - BCC
+
+msld:
+  # Direct severe liver terms
+  - decompensated cirrhosis
+  - hepatic encephalopathy
+  - esophageal varices
+  - variceal bleeding
+  - portal hypertension
+  - hepatorenal syndrome
+  - spontaneous bacterial peritonitis
+  - liver transplant
+  - hepatic failure
+  - "regex:\\bTIPS\\b"
+  - "regex:\\bMELD\\b"
+
+metacanc:
+  - metastatic
+  - metastasis
+  - metastases
+  - stage IV
+  - "regex:\\bmets\\s+to\\b"
+  # REMOVED: \bmets\b alone — too ambiguous without "to"
+  - carcinomatosis
+
+aids:
+  - AIDS
+  - "regex:\\bHIV/AIDS\\b"
+  - opportunistic infection
+  - Pneumocystis
+  # REMOVED: \bPCP\b — too ambiguous (primary care physician, phencyclidine)
+  - Kaposi sarcoma
+  - "regex:CD4\\s*<\\s*200"
+  # "HIV" alone is NOT AIDS — only include if evidence of AIDS stage
+  # - HIV
+
+# ---------------------------------------------------------------------------
+# Modifier categories for severity co-occurrence rules
+# These are NOT output categories — used internally only.
+# ---------------------------------------------------------------------------
+
+_diab_complications:
+  # If found in same text as a diab match → upgrade to diabwc
+  - nephropathy
+  - retinopathy
+  - neuropathy
+  - gastroparesis
+  - foot ulcer
+  - end organ damage
+  - "regex:c/b"
+  - "regex:complicated\\s+by"
+
+_liver_severe:
+  # If found in same text as a mld match → upgrade to msld
+  - ascites
+  - varices
+  - variceal
+  - encephalopathy
+  - portal hypertension
+  - hepatorenal
+  - liver transplant
+  - "regex:\\bTIPS\\b"
+  - "regex:\\bMELD\\b"
+  - spontaneous bacterial peritonitis
+
+_metastatic:
+  # If found anywhere → set metacanc=1 AND canc=1
+  - metastatic
+  - metastasis
+  - metastases
+  - stage IV
+  - carcinomatosis
+  - "regex:\\bmets\\s+to\\b"
+  # REMOVED: \bmets\b alone — too ambiguous without "to"

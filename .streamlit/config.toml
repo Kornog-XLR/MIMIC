@@ -1,0 +1,7 @@
+[browser]
+gatherUsageStats = false
+
+[server]
+# Local only, no external connections
+enableCORS = false
+enableXsrfProtection = true

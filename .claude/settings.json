@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./data/**)",
+      "Edit(./data/**)",
+      "Write(./data/**)",
+      "Read(./models/**)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(less:*)",
+      "Bash(more:*)",
+      "Bash(zcat:*)",
+      "Bash(gunzip:*)"
+    ]
+  }
+}

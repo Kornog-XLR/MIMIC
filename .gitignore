@@ -1,3 +1,32 @@
+# Données MIMIC (DUA PhysioNet) - ne jamais versionner
+data/
+*.csv
+*.csv.gz
+*.parquet
+
+# Modèles entraînés sur MIMIC (considérés comme données sensibles par PhysioNet)
+models/
+outputs/
+checkpoints/
+runs/
+wandb/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Système et éditeur
+.DS_Store
+.vscode/
+
+# Réglages locaux Claude Code
+.claude/settings.local.json
+
+# ---- Règles génériques Python (existantes) ----
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
